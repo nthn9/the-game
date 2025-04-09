@@ -4,9 +4,8 @@ import time
 def draw(nu_min, nu_max):
     return random.randrange(nu_min, nu_max)
 
-def is_number(number):
+def get_input_number(number):
     try:
-        int(number)
         return 1, int(number)
     except ValueError:
         print('Try agian! This value is incorrect!')
@@ -20,12 +19,12 @@ def user_numbers():
         
         while min == 0:
             nu_min = input('Please enter the minimum range for the game: \n')
-            min, nu_min = is_number(nu_min)
+            min, nu_min = get_input_number(nu_min)
         
         
         while max == 0: 
             nu_max = input('Please enter the maximum range for the game: \n')
-            max, nu_max = is_number(nu_max)
+            max, nu_max = get_input_number(nu_max)
         
         if nu_min >= nu_max:
             print(f'The minimum range: {nu_min} is greater than the maximum range: {nu_max}. Please try again.\n')
@@ -33,7 +32,7 @@ def user_numbers():
         else:
             while usr_num == 0: 
                 user_number = input('Choose your number for the game: \n')
-                usr_num, user_number = is_number(user_number)
+                usr_num, user_number = get_input_number(user_number)
             break    
     return nu_min, nu_max, user_number
 
@@ -44,11 +43,8 @@ def to_continiue():
             break
         print('Please enter (Y)es or (N)o.')
 
-    if user_input == 'y':
-        return 'y'
-    else:
-        return 'n'
-
+    return 'y' if user_input == 'y' else 'n'
+    
 def the_game():
     start = 'y'
     while start == 'y':
